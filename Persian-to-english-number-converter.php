@@ -5,7 +5,7 @@
  *
  * Description: Converts Persian numbers to English numbers in the phone number field for Digits registration.
  *
- * Version: 2.0.0
+ * Version: 2.1.0
  *
  * Author: Hassan Ali Askari
  * Author URI: https://t.me/hassan7303
@@ -71,7 +71,8 @@ function add_custom_js_to_footer() {
  add_action('wp_footer', 'add_custom_js_to_footer');
 
 
-/**
+
+ /**
  * Checks for plugin updates from GitHub and notifies WordPress.
  *
  * Fetches the latest release information from GitHub. If a newer version is available,
@@ -81,33 +82,51 @@ function add_custom_js_to_footer() {
  * @return object Modified transient object with update details if available.
  */
 function check_for_plugin_update($transient) {
-    if (empty($transient->checked)) {
-        return $transient;
-    }
+  if (empty($transient->checked)) {
+      return $transient;
+  }
 
-    $plugin_slug = 'Persian-to-english-number-converter/Persian-to-english-number-converter.php';
-    $github_url = 'https://api.github.com/repos/hassan7303/Persian-to-english-number-converter/releases/latest';
+  $plugin_slug = plugin_basename(__FILE__);
+  $github_url = 'https://api.github.com/repos/hassan7303/Persian-to-english-number-converter/releases/latest';
 
-    $response = wp_remote_get($github_url);
-    if (is_wp_error($response)) {
-        return $transient;
-    }
+  $response = wp_remote_get($github_url, ['sslverify' => false]);
+  if (is_wp_error($response)) {
+      return $transient;
+  }
 
-    $release_info = json_decode(wp_remote_retrieve_body($response), true);
+  $release_info = json_decode(wp_remote_retrieve_body($response), true);
 
-    if (isset($release_info['tag_name'])) {
-        $new_version = $release_info['tag_name'];
+  if (isset($release_info['tag_name']) && isset($transient->checked[$plugin_slug])) {
+      $new_version = $release_info['tag_name'];
+      if (version_compare($transient->checked[$plugin_slug], $new_version, '<')) {
+          $transient->response[$plugin_slug] = (object) [
+              'slug' => $plugin_slug,
+              'new_version' => $new_version,
+              'package' => $release_info['zipball_url'],
+              'url' => 'https://github.com/hassan7303/Persian-to-english-number-converter',
+          ];
+      }
+  }
 
-        if (version_compare($transient->checked[$plugin_slug], $new_version, '<')) {
-            $transient->response[$plugin_slug] = (object) [
-                'slug' => $plugin_slug,
-                'new_version' => $new_version,
-                'package' => $release_info['zipball_url'],
-                'url' => 'https://github.com/Persian-to-english-number-converter',
-            ];
-        }
-    }
-
-    return $transient;
+  return $transient;
 }
 add_filter('pre_set_site_transient_update_plugins', 'check_for_plugin_update');
+
+/**
+* Adjust plugin folder name after installation to maintain original name.
+*/
+function fix_plugin_folder_name($response, $hook_extra, $result) {
+  global $wp_filesystem;
+
+  $plugin_slug = 'Persian-to-english-number-converter';
+  $original_folder = WP_PLUGIN_DIR . '/' . $plugin_slug;
+  $new_folder = $result['destination'];
+
+  if (basename($new_folder) !== $plugin_slug) {
+      $wp_filesystem->move($new_folder, $original_folder);
+      $result['destination'] = $original_folder;
+  }
+
+  return $response;
+}
+add_filter('upgrader_post_install', 'fix_plugin_folder_name', 10, 3);
