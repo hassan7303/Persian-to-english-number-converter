@@ -35,22 +35,32 @@
 # Persian to English Number Converter
 
 ## Description
-A lightweight WordPress plugin that automatically converts Persian numbers to English numbers in the phone number field of the **Digits** registration form.
+A lightweight WordPress plugin that automatically converts Persian numbers in the phone number field of the **Digits** registration form to English numbers.
 
 ### Features
-- Converts Persian numbers (e.g., ۱۲۳۴۵۶۷۸۹۰) to English numbers (e.g., 1234567890).
-- Automatically applies the conversion on the **Digits** registration page.
+> Converts Persian numbers (e.g., ۱۲۳۴۵۶۷۸۹۰) to English numbers (e.g., 1234567890).  
+> Automatically applies conversion on the **Digits** registration page.
 
-## Installation
-1. Download the plugin as a `.zip` file.
+## **Installation**
+
+1. Download the ZIP file of the plugin from [GitHub](https://github.com/hassan7303/Persian-to-english-number-converter).
 2. Go to your WordPress admin dashboard.
-3. Navigate to **Plugins > Add New > Upload Plugin**.
-4. Upload the `.zip` file and click **Install Now**.
-5. Activate the plugin.
+3. Navigate to **Plugins** → **Add New** → **Upload Plugin**.
+4. Upload the downloaded ZIP file and activate the plugin.
 
 ## Usage
-- The plugin automatically works on the **Digits** registration form. No additional configuration is required.
-- Ensure the phone number field has the `id="digt_email"` attribute for the conversion to take effect.
+> This plugin works automatically on the **Digits** registration form and requires no additional configuration.  
+> Ensure the phone number field has the `id="digt_email"` in registration and `id="username"` for login so the conversion is applied.
+
+## **Automatic Updates**
+This plugin connects to the [GitHub repository](https://github.com/hassan7303/Persian-to-english-number-converter) and automatically fetches updates when a new version is released.  
+Make sure that WordPress automatic updates for plugins are enabled.
+
+## **Contribution**
+
+1. Fork the repository on GitHub.
+2. Implement your changes.
+3. Create a Pull Request to submit your changes.
 
 ---
 
@@ -60,16 +70,36 @@ A lightweight WordPress plugin that automatically converts Persian numbers to En
 افزونه‌ای سبک برای وردپرس که به طور خودکار اعداد فارسی را در فیلد شماره تلفن فرم ثبت‌نام **Digits** به اعداد انگلیسی تبدیل می‌کند.
 
 ### امکانات
-- تبدیل اعداد فارسی (مانند ۱۲۳۴۵۶۷۸۹۰) به اعداد انگلیسی (مانند 1234567890).
-- اعمال خودکار تبدیل در صفحه ثبت‌نام **Digits**.
+> تبدیل اعداد فارسی (مانند ۱۲۳۴۵۶۷۸۹۰) به اعداد انگلیسی (مانند 1234567890).
+>
+> اعمال خودکار تبدیل در صفحه ثبت‌نام **Digits**.
+> 
+## **نصب**
 
-## نصب
-1. افزونه را به صورت یک فایل `.zip` دانلود کنید.
-2. وارد پیشخوان وردپرس خود شوید.
-3. به مسیر **افزونه‌ها > افزودن > بارگذاری افزونه** بروید.
-4. فایل `.zip` را بارگذاری کرده و روی **هم‌اکنون نصب کن** کلیک کنید.
-5. افزونه را فعال کنید.
+۱. فایل ZIP افزونه را از [گیت‌هاب](https://github.com/hassan7303/Persian-to-english-number-converter) دانلود کنید.
+
+۲. وارد پیشخوان وردپرس شوید.
+
+۳. به مسیر **افزونه‌ها** → **افزودن** → **بارگذاری افزونه** بروید.
+
+۴. فایل ZIP دانلود شده را آپلود کرده و افزونه را فعال کنید.
 
 ## استفاده
-- این افزونه به طور خودکار روی فرم ثبت‌نام **Digits** کار می‌کند و نیازی به پیکربندی اضافی ندارد.
-- مطمئن شوید که فیلد شماره تلفن دارای ویژگی `id="digt_email"` باشد تا تبدیل اعمال شود.
+> این افزونه به طور خودکار روی فرم ثبت‌نام **Digits** کار می‌کند و نیازی به پیکربندی اضافی ندارد.
+>
+>مطمئن شوید که فیلد شماره تلفن دارای ویژگی `id="digt_email"`در ثبت نام و داری ویژگی `"id="username"`در ورود  باشد تا تبدیل اعمال شود.
+
+
+## **بروزرسانی خودکار**
+این افزونه به [مخزن گیت‌هاب](https://github.com/hassan7303/Persian-to-english-number-converter) متصل است و در صورت وجود نسخه جدید به صورت خودکار آن را دریافت می‌کند.  
+مطمئن شوید که آپدیت‌های خودکار وردپرس برای افزونه‌ها فعال باشد.
+
+
+
+## **مشارکت**
+
+۱. این مخزن را در گیت‌هاب Fork کنید.
+
+۲. تغییرات موردنظر خود را اعمال کنید.
+
+۳. یک Pull Request برای ارسال تغییرات ایجاد کنید.
